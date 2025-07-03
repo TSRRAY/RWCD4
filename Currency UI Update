@@ -1,0 +1,9 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+wait (0.001)
+script.Parent.TextLabel.Text = "Coins: " .. player.leaderstats.Coins.Value
+
+player.leaderstats.Coins.Changed:Connect(function()
+	script.Parent.TextLabel.Text = "Coins: " .. player.leaderstats.Coins.Value
+end)
