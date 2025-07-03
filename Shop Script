@@ -1,0 +1,31 @@
+local open = game.Workspace.openPart
+local frame = script.Parent.Parent
+local closeButton = frame.CloseButton
+
+
+
+local function shopMenu (otherPart)
+	local player = game.Players:FindFirstChild(otherPart.Parent.Name)
+	if player then
+		player.PlayerGui.Shop.Frame.Visible = true
+	end
+end
+
+
+script.Parent.MouseButton1Click:Connect(function()
+	local player = game.Players.LocalPlayer
+	local coins = player.leaderstats.Coins
+	
+	if coins.Value >=50 then
+		coins.Value = coins.Value - 50
+		local sword = game.ReplicatedStorage.ClassicSword:Clone()
+		sword.Parent = player.Backpack
+	end
+end)
+
+closeButton.MouseButton1Click:Connect(function()
+	local player = game.Players.LocalPlayer
+	player.PlayerGui.Shop.Frame.Visible = false
+end)
+
+open.Touched:Connect(shopMenu)
